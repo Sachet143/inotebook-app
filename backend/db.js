@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const mongoURI = "mongodb://127.0.0.1:27017/?readPreference=primary&directConnection=true";
+const mongoURI = "mongodb://127.0.0.1:27017/inotebook?readPreference=primary&directConnection=true";
 
 mongoose.set('strictQuery', false);
 
