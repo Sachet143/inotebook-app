@@ -64,6 +64,8 @@ function Notes(props) {
                     name="etitle"
                     value={note.etitle}
                     onChange={onChange}
+                    minLength={5}
+                    required
                   />
                 </div>
                 <div className="mb-3">
@@ -77,6 +79,8 @@ function Notes(props) {
                     name="edescription"
                     value={note.edescription}
                     onChange={onChange}
+                    minLength={5}
+                    required
                   />
                 </div>
                 <div className="mb-3">
@@ -90,6 +94,8 @@ function Notes(props) {
                     name="etag"
                     value={note.etag}
                     onChange={onChange}
+                    minLength={5}
+                    required
                   />
                 </div>
               </form>
@@ -105,6 +111,7 @@ function Notes(props) {
               </button>
               <button
                 type="submit"
+                disabled={note.etitle.length < 5 || note.edescription.length < 5}
                 className="btn btn-primary"
                 onClick={handleSubmit}
               >
@@ -116,10 +123,11 @@ function Notes(props) {
       </div>
       <div className="container my-3">
         <h2>Your Notes</h2>
+          {notes.length === 0 && <p>No notes to display</p>}
         <div className="row">
           {notes.map((note) => {
             return (
-              <NoteItem key={note.id} updateNote={updateNote} note={note} />
+              <NoteItem key={note._id} updateNote={updateNote} note={note} />
             );
           })}
         </div>
