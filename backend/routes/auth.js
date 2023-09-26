@@ -7,6 +7,7 @@ const router = express.Router();
 const { body, validationResult } = require("express-validator");
 
 const JWT_SECRET = "sachetisagoodb$oy";
+let success = false;
 
 //Route 1: Create a user using: POST "/api/auth/createuser". No login required
 router.post(
@@ -31,7 +32,7 @@ router.post(
       if (user) {
         return res
           .status(400)
-          .json({ success: false, error: "Sorry a user with this email already exists" });
+          .json({ success, error: "Sorry a user with this email already exists" });
       }
 
       const salt = await bcrypt.genSalt(10);
@@ -55,7 +56,7 @@ router.post(
         }
       }
       const authtoken = jwt.sign(data, JWT_SECRET);
-      let success = true;
+      success = true;
       res.json({success, authtoken});
 
     // Catch errors
