@@ -22,6 +22,7 @@ function Notes(props) {
   const handleSubmit = (e) => {
     refClose.current.click();
     editNote(note.id, note.etitle, note.edescription, note.etag)
+    props.showAlert("Notes updated successfully", "success")
   };
 
   const onChange = (e) => {
@@ -29,7 +30,7 @@ function Notes(props) {
   };
   return (
     <div>
-      <Addnotes />
+      <Addnotes showAlert={props.showAlert} />
       <div
         className="modal fade"
         id="exampleModal"
@@ -127,7 +128,7 @@ function Notes(props) {
         <div className="row">
           {notes.map((note) => {
             return (
-              <NoteItem key={note._id} updateNote={updateNote} note={note} />
+              <NoteItem key={note._id} updateNote={updateNote} note={note} showAlert={props.showAlert} />
             );
           })}
         </div>
